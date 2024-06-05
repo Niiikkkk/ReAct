@@ -70,7 +70,7 @@ def get_loader_in(args, config_type='default', split=('train', 'val')):
             val_loader = torch.utils.data.DataLoader(valset, batch_size=config.batch_size, shuffle=True, **kwargs)
         num_classes = 100
     elif args.in_dataset == "imagenet":
-        root = '/home/eaiello/ImageNet'
+        root = '/homeeaiello/ImageNet'
         # Data loading code
         if 'train' in split:
             train_loader = torch.utils.data.DataLoader(
