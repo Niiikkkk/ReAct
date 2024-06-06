@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --time=00:20:00
+#SBATCH --time=01:00:00
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=8
+#SBATCH --cpus-per-task=5
 #SBATCH --gres=gpu:1
 #SBATCH --job-name=python-ex
 #SBATCH --mail-type=ALL
@@ -12,4 +12,4 @@ module load intel/python/3/2019.4.088
 # 2 Activate the virtual environment
 source /home/nberardo/myenv/bin/activate
 # 3 Run the python script
-python eval.py --threshold 1.0
+python ReAct/eval.py --threshold 1.0
