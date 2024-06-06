@@ -1,6 +1,6 @@
 import torch
-from ..models.resnet import resnet18, resnet50, resnet18_cifar, resnet50_cifar
-from ..models.mobilenet import *
+from react.models.resnet import resnet18, resnet50, resnet18_cifar, resnet50_cifar
+from react.models.mobilenet import *
 
 
 def get_model(args, num_classes, load_ckpt=True):
