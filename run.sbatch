@@ -12,4 +12,4 @@ module load intel/python/3/2019.4.088
 # 2 Activate the virtual environment
 source /home/nberardo/myenv/bin/activate
 # 3 Run the python script
-python eval.py --threshold 1.0
+python react.eval.py --threshold 1.0

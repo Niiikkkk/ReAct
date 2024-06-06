@@ -1,24 +1,20 @@
-import os
 import torch
+from ..models.resnet import resnet18, resnet50, resnet18_cifar, resnet50_cifar
+from ..models.mobilenet import *
 
 
 def get_model(args, num_classes, load_ckpt=True):
     if args.in_dataset == 'imagenet':
         if args.model_arch == 'resnet18':
-            from ..models.resnet import resnet18
             model = resnet18(num_classes=num_classes, pretrained=True)
         elif args.model_arch == 'resnet50':
-            from ..models.resnet import resnet50
             model = resnet50(num_classes=num_classes, pretrained=True)
         elif args.model_arch == 'mobilenet':
-            from ..models.mobilenet import mobilenet_v2
             model = mobilenet_v2(num_classes=num_classes, pretrained=True)
     else:
         if args.model_arch == 'resnet18':
-            from ..models.resnet import resnet18_cifar
             model = resnet18_cifar(num_classes=num_classes, method=args.method)
         elif args.model_arch == 'resnet50':
-            from ..models.resnet import resnet50_cifar
             model = resnet50_cifar(num_classes=num_classes, method=args.method)
         else:
             assert False, 'Not supported model arch: {}'.format(args.model_arch)
