@@ -70,7 +70,7 @@ def get_loader_in(args, config_type='default', split=('train', 'val')):
             val_loader = torch.utils.data.DataLoader(valset, batch_size=config.batch_size, shuffle=True, **kwargs)
         num_classes = 100
     elif args.in_dataset == "imagenet":
-        root = '/homeeaiello/ImageNet'
+        root = '/home/eaiello/ImageNet'
         # Data loading code
         if 'train' in split:
             train_loader = torch.utils.data.DataLoader(
@@ -116,33 +116,33 @@ def get_loader_out(args, dataset=(''), config_type='default', split=('train', 'v
         val_dataset = dataset[1]
         batch_size = args.batch_size
         if val_dataset == 'SVHN':
-            from util.svhn_loader import SVHN
-            val_ood_loader = torch.utils.data.DataLoader(SVHN('datasets/ood_data/svhn/', split='test', transform=transform_test, download=False),
+            from ..util.svhn_loader import SVHN
+            val_ood_loader = torch.utils.data.DataLoader(SVHN('/home/nberardo/Datasets/ood/svhn/', split='test', transform=transform_test, download=False),
                                                        batch_size=batch_size, shuffle=False,
                                                         num_workers=2)
         elif val_dataset == 'dtd':
             transform = config.transform_test_largescale if args.in_dataset in {'imagenet'} else config.transform_test
-            val_ood_loader = torch.utils.data.DataLoader(torchvision.datasets.ImageFolder(root="datasets/ood_data/dtd/images", transform=transform),
+            val_ood_loader = torch.utils.data.DataLoader(torchvision.datasets.ImageFolder(root="/home/nberardo/Datasets/ood/dtd/images", transform=transform),
                                                        batch_size=batch_size, shuffle=True, num_workers=2)
         elif val_dataset == 'CIFAR-100':
             val_ood_loader = torch.utils.data.DataLoader(torchvision.datasets.CIFAR100(root='./data', train=False, download=True, transform=transform_test),
                                                        batch_size=batch_size, shuffle=True, num_workers=2)
         elif val_dataset == 'places50':
-            val_ood_loader = torch.utils.data.DataLoader(torchvision.datasets.ImageFolder("./datasets/ood_data/Places".format(val_dataset),
+            val_ood_loader = torch.utils.data.DataLoader(torchvision.datasets.ImageFolder("/home/nberardo/Datasets/ood/Places".format(val_dataset),
                                                           transform=config.transform_test_largescale), batch_size=batch_size, shuffle=False, num_workers=2)
         elif val_dataset == 'sun50':
             val_ood_loader = torch.utils.data.DataLoader(
-                torchvision.datasets.ImageFolder("./datasets/ood_data/SUN".format(val_dataset),
+                torchvision.datasets.ImageFolder("/home/nberardo/Datasets/ood/SUN".format(val_dataset),
                                                  transform=config.transform_test_largescale), batch_size=batch_size, shuffle=False,
                 num_workers=2)
         elif val_dataset == 'inat':
             val_ood_loader = torch.utils.data.DataLoader(
-                torchvision.datasets.ImageFolder("./datasets/ood_data/iNaturalist".format(val_dataset),
+                torchvision.datasets.ImageFolder("/home/nberardo/Datasets/ood/iNaturalist".format(val_dataset),
                                                  transform=config.transform_test_largescale), batch_size=batch_size, shuffle=False,
                 num_workers=2)
         elif val_dataset == 'imagenet':
             val_ood_loader = torch.utils.data.DataLoader(
-                torchvision.datasets.ImageFolder(os.path.join('./datasets/id_data/imagenet', 'val'), config.transform_test_largescale),
+                torchvision.datasets.ImageFolder(os.path.join('/home/eaiello/ImageNet', 'val'), config.transform_test_largescale),
                 batch_size=config.batch_size, shuffle=True, **kwargs)
         else:
             val_ood_loader = torch.utils.data.DataLoader(torchvision.datasets.ImageFolder("./datasets/ood_data/{}".format(val_dataset),
